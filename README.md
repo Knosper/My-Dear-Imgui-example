@@ -26,20 +26,23 @@ Ensure you have the following installed:
 Execute the following command to install the required libraries:
 ```bash
 sudo apt-get install libglfw3 libglfw3-dev libgl1-mesa-dev libglew-dev
-´´´
+``
 
 ### Cloning the Repository
 
 Clone the repository and its submodules using the following command:
 ```bash
 git clone --recurse-submodules https://github.com/Knosper/My-Dear-Imgui-example.git
+```
 
 ### Building the Project
 
 Navigate to the project directory and run the Makefile:
 
+```bash
 cd My-Dear-Imgui-example
 make
+```
 
 ## Usage
 
