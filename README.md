@@ -1,6 +1,7 @@
 # My Dear ImGui Example
 
 This project is a comprehensive example of using Dear ImGui in a C++ project to create a rich and interactive GUI. It is designed as a starting point for anyone looking to integrate Dear ImGui into their C++ applications. The project structure is well-organized, and it includes a variety of GUI components and utility functions to manage data and application state.
+https://github.com/ocornut/imgui
 
 ## Features
 
@@ -14,34 +15,47 @@ This project is a comprehensive example of using Dear ImGui in a C++ project to 
 ### Prerequisites
 
 Ensure you have the following installed:
-- A C++ compiler (GCC recommended)
+- A C++ compiler (clang++ recommended)
 - Make (for building the project using the Makefile)
+- GLFW (lglfw) 
+- OpenGL (lGL)
+- dl (ldl)
+
+### Installing Dependencies (Ubuntu/Debian)
+
+Execute the following command to install the required libraries:
+```bash
+sudo apt-get install libglfw3 libglfw3-dev libgl1-mesa-dev libglew-dev
 
 ### Cloning the Repository
 
 Clone the repository and its submodules using the following command:
-
 ```bash
 git clone --recurse-submodules https://github.com/Knosper/My-Dear-Imgui-example.git
 
-
-Building the Project
+### Building the Project
 
 Navigate to the project directory and run the Makefile:
+
 cd My-Dear-Imgui-example
 make
 
-Usage
+## Usage
 
 After building the project, run the generated executable to start the application and explore the various GUI components implemented with Dear ImGui.
-Contributing
 
-Contributions are welcome and a contributing file comes soon!
+## Contributing
 
-This project is open-sourced under the MIT license. See the LICENSE.md file for details.
-Acknowledgments
+Contributions are welcome! A contributing guide will be provided soon.
 
-    Thanks to the creators and contributors of Dear ImGui for their fantastic library.
-    This example is meant to serve as a starting point for anyone looking to integrate ImGui into their C++ projects.
+## License
+
+This project is open-sourced under the MIT license. See the [LICENSE.md]([url-to-license-file](https://github.com/ocornut/imgui/blob/master/LICENSE.txt)) file for details.
+
+## Acknowledgments
+
+- Thanks to the creators and contributors of Dear ImGui for their fantastic library.
+- https://github.com/ocornut/imgui
+- This example is meant to serve as a starting point for anyone looking to integrate ImGui into their C++ projects.
 
 
