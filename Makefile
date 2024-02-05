@@ -3,7 +3,7 @@ CXX := clang++
 
 INCLUDES := -Iinclude
 # Define the directory for ImGui files, relative to the src directory
-IMGUI_DIR := ../imgui
+IMGUI_DIR := imgui
 
 # Define the directory for object files
 OBJDIR := obj
