@@ -35,7 +35,7 @@ GLuint T_data::loadImage(const char* imagePath)
     unsigned char* data = stbi_load(imagePath, &width, &height, &channels, 4);
     if (data == nullptr) {
         std::cerr << "Failed to load image: " << imagePath << std::endl;
-        return 0;
+        return (0);
     }
     // Create a texture
     GLuint textureID;
@@ -84,4 +84,69 @@ void T_data::loadIcons()
     this->addIconTextureID(_ICON_TOOLS, loadImage(_ICON_TOOLS));
     this->addIconTextureID(_ICON_UPDATE, loadImage(_ICON_UPDATE));
     this->addIconTextureID(_ICON_VISUALIZE_DATABASE, loadImage(_ICON_VISUALIZE_DATABASE));
+}
+
+static void glfw_error_callback(int error, const char* description)
+{
+    fprintf(stderr, "GLFW Error %d: %s\n", error, description);
+}
+
+static bool initializeWindow(GLFWwindow** outWindow) {
+    glfwSetErrorCallback(glfw_error_callback);
+    if (!glfwInit()) {
+        std::cerr << "Failed to initialize GLFW." << std::endl;
+        return false;
+    }
+
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+
+    *outWindow = glfwCreateWindow(1280, 720, "Sql-Crawler 🔍", NULL, NULL);
+    if (*outWindow == NULL) {
+        std::cerr << "Failed to create GLFW window." << std::endl;
+        glfwTerminate();
+        return false;
+    }
+
+    glfwMakeContextCurrent(*outWindow);
+    GLenum err = glewInit();
+    if (GLEW_OK != err) {
+        fprintf(stderr, "GLEW Error: %s\n", glewGetErrorString(err));
+        glfwDestroyWindow(*outWindow);
+        glfwTerminate();
+        return false;
+    }
+
+    glfwSwapInterval(1); // Enable vsync
+    return true;
+}
+
+int T_data::initImgui()
+{
+    // Create window with graphics context
+    ImGuiIO io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+    GLFWwindow* window;
+    if (!initializeWindow(&window))
+    {
+        std::cerr << "Shutdown App." << std::endl;
+        //TODO: Try recover and restart.
+        return (EXIT_FAILURE);
+    }
+    this->setWindow(window);
+    this->setIo(&io);
+        // Load BackgroundTexture
+    GLuint backgroundTextureID = this->loadImage(_THUB_PATH);
+    if (backgroundTextureID == 0)
+    {
+        // Handle the error, maybe exit the application
+        std::cerr << "Failed to load the background texture." << std::endl;
+        glfwDestroyWindow(this->getWindow());
+        glfwTerminate();
+        return (EXIT_FAILURE);
+    }
+    this->setBackgroundTextureID(backgroundTextureID);
+    this->loadIcons();
+
+    return (EXIT_SUCCESS);
 }

@@ -46,8 +46,7 @@ public:
 
     // Setter methods in tData.cpp
     void addIconTextureID(const std::string& name, GLuint textureID);
-    void loadIcons();
-    GLuint loadImage(const char* imagePath);
+
 
     // Setter methods
     void setBackgroundTextureID(const GLuint backgroundTextureID) { _backgroundTextureID = backgroundTextureID; }
@@ -61,5 +60,10 @@ public:
     GLuint getBackgroundTextureID() const { return _backgroundTextureID; }
     GLFWwindow* getWindow() { return _window; }
     ImGuiIO* getIo() { return _io; }
+
+
+    int initImgui();
+    void loadIcons();
+    GLuint loadImage(const char* imagePath);
 };
 

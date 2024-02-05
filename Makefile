@@ -8,18 +8,21 @@ IMGUI_DIR := imgui
 # directory for object files
 OBJDIR := obj
 
-DIRS := $(OBJDIR) $(OBJDIR)/gui $(OBJDIR)/utils
+DIRS := $(OBJDIR) $(OBJDIR)/gui $(OBJDIR)/utils $(OBJDIR)/class
 
-# C++ source files for ImGui and for your project
+# Define the C++ source files for ImGui and for your project
 IMGUI_SOURCES := $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 IMGUI_SOURCES += $(IMGUI_DIR)/backends/imgui_impl_glfw.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
-SRCS := $(wildcard src/*.cpp) $(wildcard src/gui/*.cpp) $(wildcard src/utils/*.cpp)
+SRCS := $(wildcard src/*.cpp) $(wildcard src/gui/*.cpp) $(wildcard src/utils/*.cpp) $(wildcard src/class/*.cpp)
 
-# C++ object files for ImGui and for your project
+
+# Define the C++ object files for ImGui and for your project
 IMGUI_OBJS := $(addprefix $(OBJDIR)/, $(notdir $(IMGUI_SOURCES:.cpp=.o)))
 OBJS := $(SRCS:src/%.cpp=$(OBJDIR)/%.o)
 OBJS := $(OBJS:src/gui/%.cpp=$(OBJDIR)/gui/%.o)
 OBJS := $(OBJS:src/utils/%.cpp=$(OBJDIR)/utils/%.o)
+OBJS := $(OBJS:src/class/%.cpp=$(OBJDIR)/class/%.o)
+
 # Include paths for ImGui and the backends
 CXXFLAGS := -std=c++11 -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends
 CXXFLAGS += -g -Wall -Wformat
@@ -27,7 +30,7 @@ CXXFLAGS += -g -Wall -Wformat
 # Libraries needed for linking (GLFW, GL, etc.)
 LIBS := -lglfw -lGL -ldl -lGLEW
 
-# executable file
+# Define the executable file
 MAIN := dataManager
 
 .PHONY: all clean
@@ -56,6 +59,10 @@ $(OBJDIR)/gui/%.o: src/gui/%.cpp | $(OBJDIR)/gui
 
 # Pattern rule for project source files in the src/utils directory
 $(OBJDIR)/utils/%.o: src/utils/%.cpp | $(OBJDIR)/utils
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+# Pattern rule for project source files in the src/class directory
+$(OBJDIR)/class/%.o: src/class/%.cpp | $(OBJDIR)/class
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 # Pattern rule for ImGui source files
