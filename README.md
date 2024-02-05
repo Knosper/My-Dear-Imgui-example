@@ -51,7 +51,7 @@ Contributions are welcome! A contributing guide will be provided soon.
 
 ## License
 
-This project is open-sourced under the MIT license. See the [LICENSE.md]([url-to-license-file](https://github.com/ocornut/imgui/blob/master/LICENSE.txt)) file for details.
+This project is open-sourced under the MIT license. See the [LICENSE.md](https://github.com/ocornut/imgui/blob/master/LICENSE.txt) file for details.
 
 ## Acknowledgments
 
