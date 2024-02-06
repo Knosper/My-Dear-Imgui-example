@@ -1,5 +1,4 @@
-#include "AppGui.hpp"
-#include "tData.hpp"
+#include "T_Data.hpp"
 
 int main()
 {
@@ -11,7 +10,7 @@ int main()
     } else {
         std::cout << "No connection to the database!" << std::endl;
     }*/
-    if (initGui(params))
+    if (params.initGui())
     {
         std::cout << "Error main.cpp!" << std::endl;
         return (EXIT_FAILURE);
