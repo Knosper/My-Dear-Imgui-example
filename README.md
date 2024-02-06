@@ -52,6 +52,7 @@ Contributions are welcome! A contributing guide will be provided soon.
 ## License
 
 This Dear Imgui open-sourced under the MIT license. See the [LICENSE.md](https://github.com/ocornut/imgui/blob/master/LICENSE.txt) file for details.
+
 This stb_image is open-sourced under the MIT license. See the [LICENSE.md](http://nothings.org/stb) file for details.
 
 ## Acknowledgments
