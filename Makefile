@@ -31,12 +31,12 @@ CXXFLAGS += -g -Wall -Wformat
 LIBS := -lglfw -lGL -ldl -lGLEW
 
 # Define the executable file
-MAIN := dataManager
+MAIN := SqlCrawler
 
 .PHONY: all clean
 
 all: directories $(MAIN)
-	@echo dataManager has been compiled
+	@echo SqlCrawler has been compiled
 
 # Create directories target
 directories: | $(DIRS)

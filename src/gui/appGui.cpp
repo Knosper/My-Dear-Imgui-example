@@ -1,28 +1,12 @@
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-#include <stdio.h>
 #include "AppGui.hpp"
-#define GL_SILENCE_DEPRECATION
-#if defined(IMGUI_IMPL_OPENGL_ES2)
-#include <GLES2/gl2.h>
-#endif
-#include <GLFW/glfw3.h>
-
-#if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
-#pragma comment(lib, "legacy_stdio_definitions")
-#endif
-
-#ifdef __EMSCRIPTEN__
-#include "../libs/emscripten/emscripten_mainloop_stub.h"
-#endif
 
 //########################### Initialization functions ########################
 bool setupImGui(T_data &params)
 {
     const char* glsl_version = "#version 130";
     // Check for valid window pointer
-    if (!params.getWindow()) {
+    if (!params.getWindow())
+    {
         std::cerr << "setupImGui: Provided GLFWwindow pointer is null." << std::endl;
         return false;
     }
@@ -56,7 +40,7 @@ void cleanup(GLFWwindow* window)
     glfwTerminate();
 }
 
-// ########################### Utility functions ###########################
+// ########################### MenuBar Buttons ###########################
 void renderMenuBar(T_data& params)
 {
     if (ImGui::BeginMainMenuBar())
@@ -141,6 +125,7 @@ void renderMenuBar(T_data& params)
     }
 }
 
+//complete window background
 void renderBackground(ImVec2 windowSize, GLuint backgroundTextureID)
 {
     //render background image

@@ -1,4 +1,7 @@
 #include "tData.hpp"
+/* Do this:
+      #define STB_IMAGE_IMPLEMENTATION
+   before you include this file (stb_image.h) in *one* C or C++ file to create the implementation.*/
 #ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
 #endif
@@ -11,18 +14,24 @@ T_data::T_data():_backgroundTextureID(), _iconTextureIDs(), _window(), _io(), _s
 
 T_data::~T_data()
 {
-    std::cout << "T_data deleted" << std::endl; 
+    for (auto& pair : this->_iconTextureIDs)
+    {
+        GLuint textureID = pair.second;
+        glDeleteTextures(1, &textureID);
+    }
+    glDeleteTextures(1, &this->_backgroundTextureID);
+    std::cout << "T_data deleted" << std::endl;
 }
 
 void T_data::addIconTextureID(const std::string& name, GLuint textureID)
 {
-    _iconTextureIDs[name] = textureID;
+    this->_iconTextureIDs[name] = textureID;
 }
 
 GLuint T_data::getIconTextureID(const std::string& name) const
 {
-    auto it = _iconTextureIDs.find(name);
-    if (it != _iconTextureIDs.end()) {
+    auto it = this->_iconTextureIDs.find(name);
+    if (it != this->_iconTextureIDs.end()) {
         return it->second;
     }
     return (0);
