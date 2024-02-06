@@ -1,6 +1,6 @@
 .env
 env.sh
 obj/*
-dataManager
+SqlCrawler
 *.ini
 *.o

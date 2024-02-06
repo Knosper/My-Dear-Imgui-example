@@ -75,5 +75,16 @@ $(OBJDIR)/%.o: $(IMGUI_DIR)/backends/%.cpp
 $(MAIN): | directories
 
 clean:
+	@echo Cleaning application objects...
+	find $(OBJDIR) -type f ! -name 'imgui*' -delete
+	$(RM) $(MAIN)
+
+# Rebuild only app
+re: clean all
+
+fclean:
 	@echo Cleaning...
 	$(RM) -r $(OBJDIR)/* $(MAIN)
+
+# Rebuild all
+fre: fclean all
