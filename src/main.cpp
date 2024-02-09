@@ -1,8 +1,8 @@
-#include "T_Data.hpp"
+#include "Data.hpp"
 
 int main()
 {
-    T_data params;
+    Data params;
 
     /*if (params.getDatabaseConnection())
     {

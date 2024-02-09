@@ -20,6 +20,7 @@ Ensure you have the following installed:
 - GLFW (lglfw) 
 - OpenGL (lGL)
 - dl (ldl)
+- nmap
 
 ### Installing Dependencies (Ubuntu/Debian)
 

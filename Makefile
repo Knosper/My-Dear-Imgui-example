@@ -1,42 +1,45 @@
 # Define compiler
 CXX := clang++
 
-INCLUDES := -Iinclude
 # Define the directory for ImGui files, relative to the src directory
 IMGUI_DIR := imgui
 
-# directory for object files
+INCLUDES := -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -Iinclude/class -Iinclude/utils -I/usr/include/mysql
+
+# Define the directory for object files
 OBJDIR := obj
 
-DIRS := $(OBJDIR) $(OBJDIR)/gui $(OBJDIR)/utils $(OBJDIR)/class
+DIRS := $(OBJDIR) $(OBJDIR)/utils $(OBJDIR)/class $(OBJDIR)/class/Data $(OBJDIR)/class/Database
 
-# Define the C++ source files for ImGui and for your project
+# Define the C++ source files for ImGui and the project
 IMGUI_SOURCES := $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 IMGUI_SOURCES += $(IMGUI_DIR)/backends/imgui_impl_glfw.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl3.cpp
-SRCS := $(wildcard src/*.cpp) $(wildcard src/gui/*.cpp) $(wildcard src/utils/*.cpp) $(wildcard src/class/*.cpp)
+SRCS := $(wildcard src/*.cpp) $(wildcard src/utils/*.cpp) $(wildcard src/class/*.cpp) $(wildcard src/class/Data/*.cpp) $(wildcard src/class/Database/*.cpp)
 
 
-# Define the C++ object files for ImGui and for your project
+# Define the C++ object files for ImGui and the project
 IMGUI_OBJS := $(addprefix $(OBJDIR)/, $(notdir $(IMGUI_SOURCES:.cpp=.o)))
 OBJS := $(SRCS:src/%.cpp=$(OBJDIR)/%.o)
-OBJS := $(OBJS:src/gui/%.cpp=$(OBJDIR)/gui/%.o)
 OBJS := $(OBJS:src/utils/%.cpp=$(OBJDIR)/utils/%.o)
 OBJS := $(OBJS:src/class/%.cpp=$(OBJDIR)/class/%.o)
+OBJS := $(OBJS:src/class/Data/%.cpp=$(OBJDIR)/class/Data/%.o)
+OBJS := $(OBJS:src/class/Database/%.cpp=$(OBJDIR)/class/Database/%.o)
 
 # Include paths for ImGui and the backends
 CXXFLAGS := -std=c++11 -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends
 CXXFLAGS += -g -Wall -Wformat
 
 # Libraries needed for linking (GLFW, GL, etc.)
-LIBS := -lglfw -lGL -ldl -lGLEW
+LIBS := -lmysqlclient -lglfw -lGL -ldl -lGLEW  -lsqlite3
+
 
 # Define the executable file
-MAIN := SqlCrawler
+MAIN := dataManager
 
 .PHONY: all clean
 
 all: directories $(MAIN)
-	@echo SqlCrawler has been compiled
+	@echo dataManager has been compiled
 
 # Create directories target
 directories: | $(DIRS)
@@ -46,15 +49,10 @@ $(DIRS):
 
 # Main target depends on project and ImGui object files
 $(MAIN): $(OBJS) $(IMGUI_OBJS)
-	$(CXX) -o $@ $^ $(CXXFLAGS) $(LIBS)
+	$(CXX) -o $@ $^ $(CXXFLAGS) $(LIBS) 
 
 # Pattern rule for project source files in the root src directory
 $(OBJDIR)/%.o: src/%.cpp | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
-
-
-# Pattern rule for project source files in the src/gui directory
-$(OBJDIR)/gui/%.o: src/gui/%.cpp | $(OBJDIR)/gui
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 # Pattern rule for project source files in the src/utils directory
@@ -65,11 +63,18 @@ $(OBJDIR)/utils/%.o: src/utils/%.cpp | $(OBJDIR)/utils
 $(OBJDIR)/class/%.o: src/class/%.cpp | $(OBJDIR)/class
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-# Pattern rule for ImGui source files
-$(OBJDIR)/%.o: $(IMGUI_DIR)/%.cpp
+# Pattern rule for project source files in the src/class/Data directory
+$(OBJDIR)/class/Data/%.o: src/class/Data/%.cpp | $(OBJDIR)/class/Data
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+# Pattern rule for project source files in the src/class/Database directory
+$(OBJDIR)/class/Database/%.o: src/class/Database/%.cpp | $(OBJDIR)/class/Database
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/%.o: $(IMGUI_DIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJDIR)/%.o: $(IMGUI_DIR)/backends/%.cpp
+$(OBJDIR)/%.o: $(IMGUI_DIR)/backends/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(MAIN): | directories
