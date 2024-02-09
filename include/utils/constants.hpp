@@ -1,4 +1,3 @@
-// Constants.h
 #pragma once
 
 #include <string>
