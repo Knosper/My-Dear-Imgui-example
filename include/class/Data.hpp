@@ -9,10 +9,12 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include <thread>
 
 class Data
 {
 public:
+    std::size_t _cpuCores;
     //Constructor Destructor
     Data();
     ~Data();
