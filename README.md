@@ -1,13 +1,12 @@
-# My Dear ImGui Example
+# My Dear ImGui Example (This is meant to serve as a starting point)
 
-This project is a comprehensive example of using Dear ImGui in a C++ project to create a rich and interactive GUI. It is designed as a starting point for anyone looking to integrate Dear ImGui into their C++ applications. The project structure is well-organized, and it includes a variety of GUI components and utility functions to manage data and application state.
+This project is my example of using Dear ImGui in a C++ project to create a interactive GUI. It is designed as a starting point for anyone looking to integrate Dear ImGui into their C++ applications. The project structure is well-organized, and it includes a variety of GUI components and utility functions to manage data and application state.
 https://github.com/ocornut/imgui
 
 ## Features
 
 - **Dear ImGui Integration:** Seamless integration of the Dear ImGui library for creating complex and portable graphical interfaces.
 - **Modular Code:** The project is organized into separate modules for GUI components, data management, and utility functions, making the codebase easy to navigate and extend.
-- **Set of GUI Components:** Includes examples of various ImGui widgets and custom windows to kickstart your GUI development.
 - **Makefile for Easy Compilation:** The project includes a Makefile for easy building and running on various platforms.
 
 ## Getting Started
@@ -46,10 +45,6 @@ make
 
 After building the project, run the generated executable to start the application and explore the various GUI components implemented with Dear ImGui.
 
-## Contributing
-
-Contributions are welcome! A contributing guide will be provided soon.
-
 ## License
 
 This Dear Imgui open-sourced under the MIT license. See the [LICENSE.md](https://github.com/ocornut/imgui/blob/master/LICENSE.txt) file for details.
@@ -60,6 +55,3 @@ This stb_image is open-sourced under the MIT license. See the [LICENSE.md](http:
 
 - Thanks to the creators and contributors of Dear ImGui && stb_image for their fantastic library.
 - https://github.com/ocornut/imgui
-- This example is meant to serve as a starting point for anyone looking to integrate ImGui into their C++ projects.
-
-
