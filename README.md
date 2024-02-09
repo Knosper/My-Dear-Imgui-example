@@ -7,7 +7,7 @@ https://github.com/ocornut/imgui
 
 - **Dear ImGui Integration:** Seamless integration of the Dear ImGui library for creating complex and portable graphical interfaces.
 - **Modular Code:** The project is organized into separate modules for GUI components, data management, and utility functions, making the codebase easy to navigate and extend.
-- **Rich Set of GUI Components:** Includes examples of various ImGui widgets and custom windows to kickstart your GUI development.
+- **Set of GUI Components:** Includes examples of various ImGui widgets and custom windows to kickstart your GUI development.
 - **Makefile for Easy Compilation:** The project includes a Makefile for easy building and running on various platforms.
 
 ## Getting Started
@@ -58,7 +58,7 @@ This stb_image is open-sourced under the MIT license. See the [LICENSE.md](http:
 
 ## Acknowledgments
 
-- Thanks to the creators and contributors of Dear ImGui for their fantastic library.
+- Thanks to the creators and contributors of Dear ImGui && stb_image for their fantastic library.
 - https://github.com/ocornut/imgui
 - This example is meant to serve as a starting point for anyone looking to integrate ImGui into their C++ projects.
 
