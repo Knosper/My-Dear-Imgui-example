@@ -44,7 +44,7 @@ make
 
 ## Usage
 
-After building the project, run the generated executable to start the application and explore the various GUI components implemented with Dear ImGui.
+After building the project, run the generated executable to start the application.
 
 ## License
 
