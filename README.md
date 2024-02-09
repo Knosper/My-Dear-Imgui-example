@@ -1,6 +1,7 @@
 # My Dear ImGui Example (This is meant to serve as a starting point)
 
-This project is my example of using Dear ImGui in a C++ project to create a interactive GUI. It is designed as a starting point for anyone looking to integrate Dear ImGui into their C++ applications. The project structure is well-organized, and it includes a variety of GUI components and utility functions to manage data and application state.
+This project is my example of using Dear ImGui in a C++ project to create a interactive GUI. It is designed as a starting point for anyone looking to integrate Dear ImGui into their C++ applications.
+
 https://github.com/ocornut/imgui
 
 ## Features
